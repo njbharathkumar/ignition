@@ -10,7 +10,9 @@ public class StringReplace {
 		
 		System.out.println("test3: "+replace(t,'l','*'));
 		
-		System.out.println("test4: "+reverseString(t));
+		System.out.println("test4: "+reverseString1(t));
+		
+		System.out.println("test5: "+reverseString2(t));
 	}
 		
 	//iteration
@@ -59,11 +61,28 @@ public class StringReplace {
 		return new String(buf);
 	}
 	
-    public static String reverseString(String str){
+	//recursion
+    public static String reverseString1(String str){
     	if ((null == str) || (str.length()  <= 1)) {
             return str;
         }
-    	return reverseString(str.substring(1)) + str.charAt(0);
+    	return reverseString1(str.substring(1)) + str.charAt(0);
     }
      
+    //iteration
+    public static String reverseString2(String str){
+    	if ((null == str) || (str.length()  <= 1)) {
+            return str;
+        }
+    	char[] buf = str.toCharArray();
+    	char temp;
+    	int j = buf.length - 1;
+    	for (int i = 0; i < buf.length/2; i++, j--) {
+    		temp = buf[i];
+    		buf[i] = buf[j];
+    		buf[j] = temp;
+    	}
+    	return new String(buf);
+    }
+    
 }
